@@ -1,21 +1,6 @@
 const { ApolloServer, gql } = require('apollo-server');
-const { MongoClient } = require('mongodb');
 
-const { Users } = require('./datasources/users');
-
-const client = new MongoClient('mongodb://localhost:27017/test')
-client.connect()
-
-// const books = [
-//   {
-//     title: 'Harry Potter and the Chamber of Secrets',
-//     author: 'J.K. Rowling',
-//   },
-//   {
-//     title: 'Jurassic Park',
-//     author: 'Michael Crichton',
-//   },
-// ];
+const { Wyd } = require('./datasources/wyd');
 
 // // A schema is a collection of type definitions (hence "typeDefs")
 // // that together define the "shape" of queries that are executed against
@@ -23,18 +8,68 @@ client.connect()
 const typeDefs = gql`
   # Comments in GraphQL strings (such as this one) start with the hash (#) symbol.
 
-  # This "Book" type defines the queryable fields for every book in our data source.
-  type User {
-    username: String
-    password: String
-    email: String
+  type GearType {
+    name: String!
+  }
+
+  type Gear {
+    name: String!
+    type: GearType
+  }
+
+  type Role {
+    name: String!
+  }
+
+  type Member {
+    id: ID!
+    firstname: String
+    lastname: String
+    fullname: String
+    pseudo: String
+    birth_date: String
+    avatar: String
+    member_from: String
+    member_until: String
+    roles: [Role]
+    gears: [Gear]
+  }
+
+  type Song {
+    id: ID!
+    title: String!
+    duration: String
+    lyrics: String
+    authors: [Member]
+    composers: [Member]
+    rank: Int
+  }
+
+  type Record {
+    id: ID!
+    title: String!
+    songs: [Song]
+    recorded: String
+    launched: String
+  }
+
+  type Concert {
+    id: ID!
+    location_name: String
+    date: String
+    members: [Int]
   }
 
   # The "Query" type is special: it lists all of the available queries that
   # clients can execute, along with the return type for each. In this
   # case, the "books" query returns an array of zero or more Books (defined above).
   type Query {
-    users: [User]
+    members: [Member]
+    member(id: ID!): Member
+    records: [Record]
+    record(id: ID!): Record
+    concerts: [Concert]
+    concert(id: ID!): Concert
   }
 `;
 
@@ -42,10 +77,77 @@ const typeDefs = gql`
 // schema. This resolver retrieves books from the "books" array above.
 const resolvers = {
   Query: {
-    // books: () => books,
-    users: async (_source, _args, { dataSources: {users} }) => {
-      return users.getUsers();
-    }
+    members: async (_parent, _args, { dataSources: { wyd } }) => {
+
+      return wyd.getMembers();
+    },
+
+    member: async (_parent, args, { dataSources: { wyd } }) => {
+
+      return wyd.getMember(args.id);
+    },
+
+    records: async (_parent, _args, { dataSources: { wyd } }) => {
+
+      return wyd.getRecords();
+    },
+
+    record: async (_parent, args, { dataSources: { wyd } }) => {
+
+      return wyd.getRecord(args.id);
+    },
+
+    concerts: async (_parent, _args, { dataSources: { wyd } }) => {
+
+      return wyd.getConcerts();
+    },
+
+    concert: async (_parent, args, { dataSources: { wyd } }) => {
+
+      return wyd.getConcert(args.id);
+    },
+  },
+
+  Member: {
+    fullname: async (parent, _args) => {
+
+      return `${parent.firstname} ${parent.lastname}`;
+    },
+
+    roles: async (parent, _args, { dataSources: { wyd } }) => {
+
+      return parent.roles.map((id) => wyd.getRole(id));
+    },
+
+    gears: async (parent, _args, { dataSources: { wyd } }) => {
+
+      return wyd.getGearsByMemberId(parent.id);
+    },
+  },
+
+  Gear: {
+    type: async (parent, _args, { dataSources: { wyd } }) => {
+
+      return wyd.getGearType(parent.type);
+    },
+  },
+
+  Record: {
+    songs: async (parent, _args, { dataSources: { wyd } }) => {
+
+      return wyd.getSongsByRecord(parent.id);
+    },
+  },
+
+  Song: {
+    authors: async (parent, _args, { dataSources: { wyd } }) => {
+
+      return parent.authors.map((memberId) => wyd.getMember(memberId));
+    },
+    composers: async (parent, _args, { dataSources: { wyd } }) => {
+
+      return parent.composers.map((memberId) => wyd.getMember(memberId));
+    },
   },
 };
 
@@ -56,7 +158,7 @@ const server = new ApolloServer({
   resolvers,
   dataSources: () => {
     return {
-      users: new Users(client.db().collection('users')),
+      wyd: new Wyd(),
     };
   },
   context: () => {
