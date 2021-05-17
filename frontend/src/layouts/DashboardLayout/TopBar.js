@@ -1,20 +1,21 @@
-import React, { useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+// import React, { useState } from 'react';
+import React from 'react';
+// import { Link as RouterLink } from 'react-router-dom';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import {
   AppBar,
-  Badge,
-  Box,
+  // Badge,
+  // Box,
   Hidden,
   IconButton,
   Toolbar,
   makeStyles
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
-import InputIcon from '@material-ui/icons/Input';
-import Logo from 'src/components/Logo';
+// import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
+// import InputIcon from '@material-ui/icons/Input';
+// import Logo from 'src/components/Logo';
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -30,7 +31,7 @@ const TopBar = ({
   ...rest
 }) => {
   const classes = useStyles();
-  const [notifications] = useState([]);
+  // const [notifications] = useState([]);
 
   return (
     <AppBar
@@ -39,7 +40,7 @@ const TopBar = ({
       {...rest}
     >
       <Toolbar>
-        <RouterLink to="/">
+        {/* <RouterLink to="/">
           <Logo />
         </RouterLink>
         <Box flexGrow={1} />
@@ -56,7 +57,7 @@ const TopBar = ({
           <IconButton color="inherit">
             <InputIcon />
           </IconButton>
-        </Hidden>
+        </Hidden> */}
         <Hidden lgUp>
           <IconButton
             color="inherit"
