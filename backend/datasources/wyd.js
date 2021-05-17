@@ -24,6 +24,7 @@ COL_RECORD = 'wyd.record';
 COL_RECORD_TRACK = 'wyd.recordtrack';
 COL_SONG = 'wyd.song';
 COL_CONCERT = 'wyd.concert';
+COL_CONCERT_SETLIST = 'wyd.concertsetlist';
 
 const _getFields = (item) => {
   return {
@@ -113,7 +114,16 @@ class Wyd extends DataSource {
 
   getSongsByRecord(recordId) {
     return _getMappedItems(COL_RECORD_TRACK, {record: recordId})
-      .sort((a, b) => a.rank > b.rank ? 1 : -1)
+      .map((track) => {
+        return {
+          ...this.getSong(track.song),
+          rank: track.rank,
+        };
+      });
+  }
+
+  getSongsByConcert(concertId) {
+    return _getMappedItems(COL_CONCERT_SETLIST, {concert: concertId})
       .map((track) => {
         return {
           ...this.getSong(track.song),

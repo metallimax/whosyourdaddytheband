@@ -48,16 +48,17 @@ const typeDefs = gql`
   type Record {
     id: ID!
     title: String!
-    songs: [Song]
     recorded: String
     launched: String
+    songs: [Song]
   }
 
   type Concert {
     id: ID!
     location_name: String
     date: String
-    members: [Int]
+    members: [Member]
+    songs: [Song]
   }
 
   # The "Query" type is special: it lists all of the available queries that
@@ -139,11 +140,24 @@ const resolvers = {
     },
   },
 
+  Concert: {
+    songs: async (parent, _args, { dataSources: { wyd } }) => {
+
+      return wyd.getSongsByConcert(parent.id);
+    },
+
+    members: async (parent, _args, { dataSources: { wyd } }) => {
+
+      return parent.members.map((memberId) => wyd.getMember(memberId));
+    },
+  },
+
   Song: {
     authors: async (parent, _args, { dataSources: { wyd } }) => {
 
       return parent.authors.map((memberId) => wyd.getMember(memberId));
     },
+
     composers: async (parent, _args, { dataSources: { wyd } }) => {
 
       return parent.composers.map((memberId) => wyd.getMember(memberId));
