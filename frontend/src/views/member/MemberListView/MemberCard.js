@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
-  // Avatar,
+  Avatar,
   Box,
   Button,
   Card,
@@ -15,8 +15,6 @@ import {
 // import AccessTimeIcon from '@material-ui/icons/AccessTime';
 // import GetAppIcon from '@material-ui/icons/GetApp';
 import { Link as RouterLink } from 'react-router-dom';
-
-import { stringDateFormat } from 'src/common/utils';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,10 +30,11 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const ConcertCard = ({ className, concert, ...rest }) => {
+const MemberCard = ({ className, member, ...rest }) => {
   const classes = useStyles();
 
-  const concertUrl = `/app/concerts/${concert.id}`;
+  const memberUrl = `/app/members/${member.id}`;
+  const avatar = `/static/images/avatars/${member.avatar}`;
 
   return (
     <Card
@@ -43,31 +42,30 @@ const ConcertCard = ({ className, concert, ...rest }) => {
       {...rest}
     >
       <CardContent>
-        {/* <Box
+        <Box
           display="flex"
           justifyContent="center"
           mb={3}
         >
           <Avatar
-            alt="Concert"
-            src={concert.media}
-            variant="square"
+            alt={member.pseudo}
+            src={avatar}
           />
-        </Box> */}
+        </Box>
         <Typography
           align="center"
           color="textPrimary"
           gutterBottom
           variant="h4"
         >
-          {concert.title}
+          {member.pseudo}
         </Typography>
         <Typography
           align="center"
           color="textPrimary"
           variant="body1"
         >
-          {stringDateFormat(concert.date)}
+          {member.fullname}
         </Typography>
       </CardContent>
       <Box flexGrow={1} />
@@ -81,24 +79,12 @@ const ConcertCard = ({ className, concert, ...rest }) => {
           <Grid
             className={classes.statsItem}
             item
-          >
-            {/* <AccessTimeIcon
-              className={classes.statsIcon}
-              color="action"
-            />
-            <Typography
-              color="textSecondary"
-              display="inline"
-              variant="body2"
-            >
-              Updated 2hr ago
-            </Typography> */}
-          </Grid>
+          />
           <Grid
             className={classes.statsItem}
             item
           >
-            <RouterLink to={concertUrl}>
+            <RouterLink to={memberUrl}>
               <Button
                 color="primary"
                 variant="contained"
@@ -113,9 +99,9 @@ const ConcertCard = ({ className, concert, ...rest }) => {
   );
 };
 
-ConcertCard.propTypes = {
+MemberCard.propTypes = {
   className: PropTypes.string,
-  concert: PropTypes.object.isRequired
+  member: PropTypes.object.isRequired
 };
 
-export default ConcertCard;
+export default MemberCard;

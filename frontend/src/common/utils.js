@@ -7,6 +7,13 @@ const stringDateFormat = (str) => {
   }
 };
 
-const dummy = 'dummy';
+const stringDurationFormat = (str) => {
+  try {
+    return str.substr(0, 3) === '00:' ? str.substr(3) : str;
+  } catch (e) {
+    console.warn(`stringDurationFormat ${e.toString()}`);
+    return str;
+  }
+};
 
-export { stringDateFormat, dummy };
+export { stringDateFormat, stringDurationFormat };

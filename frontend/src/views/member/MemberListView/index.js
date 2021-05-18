@@ -12,8 +12,7 @@ import Page from 'src/components/Page';
 
 import api from 'src/common/api';
 
-import Toolbar from './Toolbar';
-import ConcertCard from './ConcertCard';
+import MemberCard from './MemberCard';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,22 +21,27 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(3),
     paddingTop: theme.spacing(3)
   },
-  concertCard: {
+  memberCard: {
     height: '100%'
   }
 }));
 
-const ConcertList = () => {
+const MemberList = () => {
   const classes = useStyles();
-  const { loading, error, data } = useQuery(api.graphql.query.CONCERTS);
+  const { loading, error, data } = useQuery(api.graphql.query.MEMBERS);
 
-  const title = 'Concerts';
+  const title = 'Members';
 
   if (loading) return <Loading title={title} />;
   if (error) return <p>Error</p>;
 
-  const concerts = [...data.concerts];
-  concerts.sort((a, b) => { return a.date > b.date ? -1 : 1; });
+  const members = [...data.members].filter((member) => {
+    const today = new Date();
+    const strToday = today.toISOString().substr(0, 10);
+
+    return member.member_until === null || member.member_until >= strToday;
+  });
+  members.sort((a, b) => { return a.birth_date < b.birth_date ? -1 : 1; });
 
   return (
     <Page
@@ -45,23 +49,22 @@ const ConcertList = () => {
       title={title}
     >
       <Container maxWidth={false}>
-        <Toolbar />
         <Box mt={3}>
           <Grid
             container
             spacing={3}
           >
-            {concerts.map((concert) => (
+            {members.map((member) => (
               <Grid
                 item
-                key={concert.id}
-                lg={4}
+                key={member.id}
+                lg={3}
                 md={6}
                 xs={12}
               >
-                <ConcertCard
-                  className={classes.concertCard}
-                  concert={concert}
+                <MemberCard
+                  className={classes.memberCard}
+                  member={member}
                 />
               </Grid>
             ))}
@@ -83,4 +86,4 @@ const ConcertList = () => {
   );
 };
 
-export default ConcertList;
+export default MemberList;

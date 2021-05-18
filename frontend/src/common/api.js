@@ -67,6 +67,10 @@ export default {
           members {
             id
             fullname
+            pseudo
+            birth_date
+            member_until
+            avatar
           }
         }
       `,
@@ -91,6 +95,33 @@ export default {
               type {
                 name
               }
+            }
+          }
+        }
+      `,
+      RECORDS: gql`
+        query Records {
+          records {
+            id
+            title
+            type
+            released
+            artwork
+          }
+        }
+      `,
+      RECORD: gql`
+        query Record($id: ID!) {
+          record(id: $id) {
+            id
+            title
+            type
+            released
+            artwork
+            songs {
+              id
+              title
+              rank
             }
           }
         }

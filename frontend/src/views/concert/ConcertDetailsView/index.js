@@ -1,5 +1,5 @@
 import React from 'react';
-import { useMatch } from 'react-router-dom';
+import { useMatch, Link as RouterLink } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 // import clsx from 'clsx';
 import {
@@ -77,9 +77,13 @@ const ConcertDetails = () => {
   const match = useMatch('/app/concerts/:concertId');
   const { loading, error, data } = useQuery(api.graphql.query.CONCERT, {
     variables: {
-      id: match.params.concertId,
+      id: match === null ? 0 : match.params.concertId,
     }
   });
+
+  if (match === null) {
+    return <div>ERROR: match is null</div>;
+  }
 
   let title = 'Concert';
 
@@ -124,6 +128,8 @@ const ConcertDetails = () => {
               <div className={classes.column}>
                 <List component="nav" aria-label="main mailbox folders">
                   {songs.map((song) => {
+                    const songUrl = `/app/songs/${song.id}`;
+
                     return (
                       <ListItem key={`song_${song.id}`}>
                         <ListItemIcon>
@@ -132,9 +138,11 @@ const ConcertDetails = () => {
                         <ListItemText className={classes.songRank} primary={song.rank} />
                         <ListItemText className={classes.songTitle} primary={song.title} />
                         <ListItemSecondaryAction>
-                          <IconButton edge="end" aria-label="delete">
-                            <ArrowRightCircleIcon />
-                          </IconButton>
+                          <RouterLink to={songUrl}>
+                            <IconButton edge="end" aria-label="song">
+                              <ArrowRightCircleIcon />
+                            </IconButton>
+                          </RouterLink>
                         </ListItemSecondaryAction>
                       </ListItem>
                     );

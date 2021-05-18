@@ -3,28 +3,11 @@ import { useMatch } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 // import clsx from 'clsx';
 import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  // AccordionActions,
   Box,
   Container,
-  IconButton,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemSecondaryAction,
-  ListItemText,
   Typography,
   makeStyles
 } from '@material-ui/core';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import {
-  ArrowRightCircle as ArrowRightCircleIcon,
-  Music as MusicIcon,
-  User as UserIcon,
-  Users as UsersIcon,
-} from 'react-feather';
 
 import Page from 'src/components/Page';
 
@@ -72,28 +55,32 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ConcertDetails = () => {
+const MemberDetails = () => {
   const classes = useStyles();
-  const match = useMatch('/app/concerts/:concertId');
-  const { loading, error, data } = useQuery(api.graphql.query.CONCERT, {
+  const match = useMatch('/app/members/:memberId');
+  const { loading, error, data } = useQuery(api.graphql.query.MEMBER, {
     variables: {
-      id: match.params.concertId,
+      id: match === null ? 0 : match.params.memberId,
     }
   });
 
-  let title = 'Concert';
+  if (match === null) {
+    return <div>ERROR: match is null</div>;
+  }
+
+  let title = 'Member';
 
   if (loading) return <Loading title={title} />;
   if (error) return <p>Error</p>;
 
-  title = `${title}: ${data.concert.title}`;
+  title = `${title}: ${data.member.pseudo}`;
 
-  const songs = [...data.concert.songs];
-  songs.sort((a, b) => { return a.rank < b.rank ? -1 : 1; });
-  const bands = [...data.concert.bands];
-  bands.sort();
-  const members = [...data.concert.members];
-  members.sort((a, b) => { return a.birth_date < b.birth_date ? -1 : 1; });
+  // const songs = [...data.concert.songs];
+  // songs.sort((a, b) => { return a.rank < b.rank ? -1 : 1; });
+  // const bands = [...data.concert.bands];
+  // bands.sort();
+  // const members = [...data.concert.members];
+  // members.sort((a, b) => { return a.birth_date < b.birth_date ? -1 : 1; });
 
   return (
     <Page
@@ -105,129 +92,10 @@ const ConcertDetails = () => {
           <Typography variant="h2" gutterBottom>
             {title}
           </Typography>
-          <Accordion defaultExpanded>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="songs-content"
-              id="songs-header"
-            >
-              <div className={classes.column}>
-                <Typography className={classes.heading}>Setlist</Typography>
-              </div>
-              <div className={classes.column}>
-                <Typography className={classes.secondaryHeading}>
-                  Songs played during the concert
-                </Typography>
-              </div>
-            </AccordionSummary>
-            <AccordionDetails className={classes.details}>
-              <div className={classes.column}>
-                <List component="nav" aria-label="main mailbox folders">
-                  {songs.map((song) => {
-                    return (
-                      <ListItem key={`song_${song.id}`}>
-                        <ListItemIcon>
-                          <MusicIcon />
-                        </ListItemIcon>
-                        <ListItemText className={classes.songRank} primary={song.rank} />
-                        <ListItemText className={classes.songTitle} primary={song.title} />
-                        <ListItemSecondaryAction>
-                          <IconButton edge="end" aria-label="delete">
-                            <ArrowRightCircleIcon />
-                          </IconButton>
-                        </ListItemSecondaryAction>
-                      </ListItem>
-                    );
-                  })}
-                </List>
-
-              </div>
-              <div className={classes.column} />
-              {/* <div className={clsx(classes.column, classes.helper)}>
-                <Typography variant="caption">
-                  Select your destination of choice
-                  <br />
-                  <a href="#secondary-heading-and-columns" className={classes.link}>
-                    Learn more
-                  </a>
-                </Typography>
-              </div> */}
-            </AccordionDetails>
-          </Accordion>
-          <Accordion>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="bands-content"
-              id="bands-header"
-            >
-              <div className={classes.column}>
-                <Typography className={classes.heading}>Bands</Typography>
-              </div>
-              <div className={classes.column}>
-                <Typography className={classes.secondaryHeading}>
-                  Other bands playing with us
-                </Typography>
-              </div>
-            </AccordionSummary>
-            <AccordionDetails className={classes.details}>
-              <div className={classes.column}>
-                <List component="nav" aria-label="main mailbox folders">
-                  {bands.map((band) => {
-                    return (
-                      <ListItem key={`band_${band}`}>
-                        <ListItemIcon>
-                          <UsersIcon />
-                        </ListItemIcon>
-                        <ListItemText className={classes.songTitle} primary={band} />
-                      </ListItem>
-                    );
-                  })}
-                </List>
-
-              </div>
-              <div className={classes.column} />
-            </AccordionDetails>
-          </Accordion>
-          <Accordion>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="members-content"
-              id="members-header"
-            >
-              <div className={classes.column}>
-                <Typography className={classes.heading}>Members</Typography>
-              </div>
-              <div className={classes.column}>
-                <Typography className={classes.secondaryHeading}>
-                  The band member who played this concert
-                </Typography>
-              </div>
-            </AccordionSummary>
-            <AccordionDetails className={classes.details}>
-              <div className={classes.column}>
-                <List component="nav" aria-label="main mailbox folders">
-                  {members.map((member) => {
-                    const roles = member.roles.map((role) => role.name).join(', ');
-
-                    return (
-                      <ListItem key={`member_${member.pseudo}`}>
-                        <ListItemIcon>
-                          <UserIcon />
-                        </ListItemIcon>
-                        <ListItemText className={classes.songTitle} primary={`${member.pseudo} (${roles})`} />
-                      </ListItem>
-                    );
-                  })}
-                </List>
-
-              </div>
-              <div className={classes.column} />
-            </AccordionDetails>
-          </Accordion>
         </Box>
       </Container>
     </Page>
   );
 };
 
-export default ConcertDetails;
+export default MemberDetails;

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
-  // Avatar,
+  Avatar,
   Box,
   Button,
   Card,
@@ -29,13 +29,18 @@ const useStyles = makeStyles((theme) => ({
   },
   statsIcon: {
     marginRight: theme.spacing(1)
-  }
+  },
+  large: {
+    width: theme.spacing(7),
+    height: theme.spacing(7),
+  },
 }));
 
-const ConcertCard = ({ className, concert, ...rest }) => {
+const RecordCard = ({ className, record, ...rest }) => {
   const classes = useStyles();
 
-  const concertUrl = `/app/concerts/${concert.id}`;
+  const recordUrl = `/app/records/${record.id}`;
+  const artwork = `/static/images/artworks/${record.artwork}`;
 
   return (
     <Card
@@ -43,31 +48,32 @@ const ConcertCard = ({ className, concert, ...rest }) => {
       {...rest}
     >
       <CardContent>
-        {/* <Box
+        <Box
           display="flex"
           justifyContent="center"
           mb={3}
         >
           <Avatar
-            alt="Concert"
-            src={concert.media}
+            alt={record.title}
+            className={classes.large}
+            src={artwork}
             variant="square"
           />
-        </Box> */}
+        </Box>
         <Typography
           align="center"
           color="textPrimary"
           gutterBottom
           variant="h4"
         >
-          {concert.title}
+          {`${record.title} [${record.type}]`}
         </Typography>
         <Typography
           align="center"
           color="textPrimary"
           variant="body1"
         >
-          {stringDateFormat(concert.date)}
+          {stringDateFormat(record.released)}
         </Typography>
       </CardContent>
       <Box flexGrow={1} />
@@ -98,7 +104,7 @@ const ConcertCard = ({ className, concert, ...rest }) => {
             className={classes.statsItem}
             item
           >
-            <RouterLink to={concertUrl}>
+            <RouterLink to={recordUrl}>
               <Button
                 color="primary"
                 variant="contained"
@@ -113,9 +119,9 @@ const ConcertCard = ({ className, concert, ...rest }) => {
   );
 };
 
-ConcertCard.propTypes = {
+RecordCard.propTypes = {
   className: PropTypes.string,
-  concert: PropTypes.object.isRequired
+  record: PropTypes.object.isRequired
 };
 
-export default ConcertCard;
+export default RecordCard;
