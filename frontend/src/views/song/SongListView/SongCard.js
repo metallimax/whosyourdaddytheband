@@ -12,8 +12,6 @@ import {
   Typography,
   makeStyles
 } from '@material-ui/core';
-// import AccessTimeIcon from '@material-ui/icons/AccessTime';
-// import GetAppIcon from '@material-ui/icons/GetApp';
 import { Link as RouterLink } from 'react-router-dom';
 
 import { stringDateFormat } from 'src/common/utils';
@@ -32,10 +30,10 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const ConcertCard = ({ className, concert, ...rest }) => {
+const SongCard = ({ className, song, ...rest }) => {
   const classes = useStyles();
 
-  const concertUrl = `/app/concerts/${concert.id}`;
+  const songUrl = `/app/songs/${song.id}`;
 
   return (
     <Card
@@ -49,8 +47,8 @@ const ConcertCard = ({ className, concert, ...rest }) => {
           mb={3}
         >
           <Avatar
-            alt="Concert"
-            src={concert.media}
+            alt="Song"
+            src={Song.media}
             variant="square"
           />
         </Box> */}
@@ -60,14 +58,14 @@ const ConcertCard = ({ className, concert, ...rest }) => {
           gutterBottom
           variant="h4"
         >
-          {concert.title}
+          {song.title}
         </Typography>
         <Typography
           align="center"
           color="textPrimary"
           variant="body1"
         >
-          {stringDateFormat(concert.date)}
+          {stringDateFormat(song.date)}
         </Typography>
       </CardContent>
       <Box flexGrow={1} />
@@ -98,7 +96,7 @@ const ConcertCard = ({ className, concert, ...rest }) => {
             className={classes.statsItem}
             item
           >
-            <RouterLink to={concertUrl}>
+            <RouterLink to={songUrl}>
               <Button
                 color="primary"
                 variant="contained"
@@ -113,9 +111,9 @@ const ConcertCard = ({ className, concert, ...rest }) => {
   );
 };
 
-ConcertCard.propTypes = {
+SongCard.propTypes = {
   className: PropTypes.string,
-  concert: PropTypes.object.isRequired
+  song: PropTypes.object.isRequired
 };
 
-export default ConcertCard;
+export default SongCard;

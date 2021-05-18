@@ -16,16 +16,17 @@ import {
 import {
   // AlertCircle as AlertCircleIcon,
   // BarChart as BarChartIcon,
-  Home as HomeIcon,
-  Speaker as SpeakerIcon,
-  Music as MusicIcon,
   Disc as DiscIcon,
+  Home as HomeIcon,
+  Music as MusicIcon,
+  Send as SendIcon,
+  Speaker as SpeakerIcon,
+  Users as UsersIcon
   // Lock as LockIcon,
   // Settings as SettingsIcon,
   // ShoppingBag as ShoppingBagIcon,
-  // User as UserIcon,
   // UserPlus as UserPlusIcon,
-  // Users as UsersIcon
+  // User as UserIcon,
 } from 'react-feather';
 import NavItem from './NavItem';
 
@@ -55,6 +56,16 @@ const items = [
     href: '/app/songs',
     icon: MusicIcon,
     title: 'Songs'
+  },
+  {
+    href: '/app/members',
+    icon: UsersIcon,
+    title: 'Members'
+  },
+  {
+    href: '/app/contact',
+    icon: SendIcon,
+    title: 'Contact'
   },
   // {
   //   href: '/app/dashboard',

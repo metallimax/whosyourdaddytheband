@@ -2,32 +2,34 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 import DashboardLayout from 'src/layouts/DashboardLayout';
 import MainLayout from 'src/layouts/MainLayout';
-// import AccountView from 'src/views/account/AccountView';
-// import CustomerListView from 'src/views/customer/CustomerListView';
-// import DashboardView from 'src/views/reports/DashboardView';
-// import LoginView from 'src/views/auth/LoginView';
 import NotFoundView from 'src/views/errors/NotFoundView';
-// import ProductListView from 'src/views/product/ProductListView';
-// import RegisterView from 'src/views/auth/RegisterView';
-// import SettingsView from 'src/views/settings/SettingsView';
 
 import HomeView from 'src/views/home/HomeView';
 import ConcertListView from 'src/views/concert/ConcertListView';
 import ConcertDetailsView from 'src/views/concert/ConcertDetailsView';
+import SongListView from 'src/views/song/SongListView';
+import SongDetailsView from 'src/views/song/SongDetailsView';
+import MemberListView from 'src/views/member/MemberListView';
+import MemberDetailsView from 'src/views/member/MemberDetailsView';
+import RecordListView from 'src/views/record/RecordListView';
+import RecordDetailsView from 'src/views/record/RecordDetailsView';
+import ContactView from 'src/views/contact/ContactView';
 
 const routes = [
   {
     path: 'app',
     element: <DashboardLayout />,
     children: [
-      // { path: 'account', element: <AccountView /> },
-      // { path: 'customers', element: <CustomerListView /> },
-      // { path: 'dashboard', element: <DashboardView /> },
-      // { path: 'products', element: <ProductListView /> },
-      // { path: 'settings', element: <SettingsView /> },
       { path: 'home', element: <HomeView /> },
       { path: 'concerts', element: <ConcertListView /> },
-      { path: 'concert/:concertId', element: <ConcertDetailsView /> },
+      { path: 'concerts/:concertId', element: <ConcertDetailsView /> },
+      { path: 'songs', element: <SongListView /> },
+      { path: 'songs/:songId', element: <SongDetailsView /> },
+      { path: 'members', element: <MemberListView /> },
+      { path: 'members/:memberId', element: <MemberDetailsView /> },
+      { path: 'records', element: <RecordListView /> },
+      { path: 'records/:recordId', element: <RecordDetailsView /> },
+      { path: 'contact', element: <ContactView /> },
       { path: '*', element: <Navigate to="/404" /> }
     ]
   },
@@ -35,8 +37,6 @@ const routes = [
     path: '/',
     element: <MainLayout />,
     children: [
-      // { path: 'login', element: <LoginView /> },
-      // { path: 'register', element: <RegisterView /> },
       { path: '404', element: <NotFoundView /> },
       { path: '/', element: <Navigate to="/app/home" /> },
       { path: '*', element: <Navigate to="/404" /> }

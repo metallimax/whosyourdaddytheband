@@ -16,13 +16,13 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Home = () => {
+const Contact = () => {
   const classes = useStyles();
 
   return (
     <Page
       className={classes.root}
-      title="Who's Your Daddy?"
+      title="Contact"
     >
       <Container maxWidth={false}>
         <Grid
@@ -36,7 +36,7 @@ const Home = () => {
             xl={3}
             xs={12}
           >
-            HOME
+            Contact
           </Grid>
         </Grid>
       </Container>
@@ -44,4 +44,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Contact;

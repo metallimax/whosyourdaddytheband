@@ -13,7 +13,7 @@ import Page from 'src/components/Page';
 import api from 'src/common/api';
 
 import Toolbar from './Toolbar';
-import ConcertCard from './ConcertCard';
+import SongCard from './SongCard';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,22 +22,22 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(3),
     paddingTop: theme.spacing(3)
   },
-  concertCard: {
+  songCard: {
     height: '100%'
   }
 }));
 
-const ConcertList = () => {
+const SongList = () => {
   const classes = useStyles();
-  const { loading, error, data } = useQuery(api.graphql.query.CONCERTS);
+  const { loading, error, data } = useQuery(api.graphql.query.SONGS);
 
-  const title = 'Concerts';
+  const title = 'Songs';
 
   if (loading) return <Loading title={title} />;
   if (error) return <p>Error</p>;
 
-  const concerts = [...data.concerts];
-  concerts.sort((a, b) => { return a.date > b.date ? -1 : 1; });
+  const songs = [...data.songs];
+  songs.sort((a, b) => { return a.title < b.title ? -1 : 1; });
 
   return (
     <Page
@@ -51,17 +51,17 @@ const ConcertList = () => {
             container
             spacing={3}
           >
-            {concerts.map((concert) => (
+            {songs.map((song) => (
               <Grid
                 item
-                key={concert.id}
+                key={song.id}
                 lg={4}
                 md={6}
                 xs={12}
               >
-                <ConcertCard
+                <SongCard
                   className={classes.concertCard}
-                  concert={concert}
+                  song={song}
                 />
               </Grid>
             ))}
@@ -83,4 +83,4 @@ const ConcertList = () => {
   );
 };
 
-export default ConcertList;
+export default SongList;

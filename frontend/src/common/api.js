@@ -22,15 +22,79 @@ export default {
             date
             members {
               pseudo
+              birth_date
+              roles {
+                name
+              }
             }
             bands
             songs {
+              id
               title
               rank
             }
           }
         }
-    `,
+      `,
+      SONGS: gql`
+        query Songs {
+          songs {
+            id
+            title
+          }
+        }
+      `,
+      SONG: gql`
+        query Song($id: ID!) {
+          song(id: $id) {
+            id
+            title
+            duration
+            lyrics
+            authors {
+              id
+              fullname
+            }
+            composers {
+              id
+              fullname
+            }
+          }
+        }
+      `,
+      MEMBERS: gql`
+        query Members {
+          members {
+            id
+            fullname
+          }
+        }
+      `,
+      MEMBER: gql`
+        query Member($id: ID!) {
+          member(id: $id) {
+            id
+            firstname
+            lastname
+            fullname
+            fullnameAka
+            pseudo
+            birth_date
+            avatar
+            member_from
+            member_until
+            roles {
+              name
+            }
+            gears {
+              name
+              type {
+                name
+              }
+            }
+          }
+        }
+      `,
     },
   },
 };
