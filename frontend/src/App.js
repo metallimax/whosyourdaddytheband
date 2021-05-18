@@ -13,14 +13,8 @@ import { ApolloProvider } from '@apollo/client/react';
 import api from 'src/common/api';
 
 const cache = new InMemoryCache();
-const url = api.backendUrl;
-const client = new ApolloClient({ url, cache });
-
-client
-  .query({
-    query: api.query.CONCERTS,
-  })
-  .then((result) => console.log(result));
+const uri = api.backendUrl;
+const client = new ApolloClient({ uri, cache });
 
 const App = () => {
   const routing = useRoutes(routes);

@@ -8,11 +8,29 @@ export default {
         query Concerts {
           concerts {
             id
-            location_name
+            title
             date
           }
         }
       `,
+      CONCERT: gql`
+        query Concert($id: ID!) {
+          concert(id: $id) {
+            id
+            title
+            venue
+            date
+            members {
+              pseudo
+            }
+            bands
+            songs {
+              title
+              rank
+            }
+          }
+        }
+    `,
     },
-  }
+  },
 };

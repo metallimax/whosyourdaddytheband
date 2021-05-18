@@ -18,6 +18,8 @@ import {
   // BarChart as BarChartIcon,
   Home as HomeIcon,
   Speaker as SpeakerIcon,
+  Music as MusicIcon,
+  Disc as DiscIcon,
   // Lock as LockIcon,
   // Settings as SettingsIcon,
   // ShoppingBag as ShoppingBagIcon,
@@ -43,6 +45,16 @@ const items = [
     href: '/app/concerts',
     icon: SpeakerIcon,
     title: 'Concerts'
+  },
+  {
+    href: '/app/records',
+    icon: DiscIcon,
+    title: 'Records'
+  },
+  {
+    href: '/app/songs',
+    icon: MusicIcon,
+    title: 'Songs'
   },
   // {
   //   href: '/app/dashboard',

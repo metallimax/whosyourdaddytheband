@@ -55,9 +55,11 @@ const typeDefs = gql`
 
   type Concert {
     id: ID!
-    location_name: String
+    title: String
+    venue: String
     date: String
     members: [Member]
+    bands: [String]
     songs: [Song]
   }
 

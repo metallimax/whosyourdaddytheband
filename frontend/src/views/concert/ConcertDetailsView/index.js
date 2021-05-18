@@ -1,4 +1,5 @@
 import React from 'react';
+import { useMatch } from "react-router-dom";
 import { useQuery } from '@apollo/client';
 import {
   Box,
@@ -6,13 +7,9 @@ import {
   Grid,
   makeStyles
 } from '@material-ui/core';
-// import { Pagination } from '@material-ui/lab';
 import Page from 'src/components/Page';
 
 import api from 'src/common/api';
-
-import Toolbar from './Toolbar';
-import ConcertCard from './ConcertCard';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,15 +23,22 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const ConcertList = () => {
+const ConcertDetails = () => {
   const classes = useStyles();
-  const { loading, error, data } = useQuery(api.graphql.query.CONCERTS);
+  const match = useMatch('/app/concert/:concertId');
+  const { loading, error, data } = useQuery(api.graphql.query.CONCERT, {
+    variables: {
+      id: match.params.concertId,
+    }
+  });
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error</p>;
 
-  const concerts = [...data.concerts];
-  concerts.sort((a, b) => { return a.date > b.date ? -1 : 1; });
+  // const concerts = [...data.concerts];
+  // concerts.sort((a, b) => { return a.date > b.date ? -1 : 1; });
+
+  console.log(data);
 
   return (
     <Page
@@ -42,13 +46,13 @@ const ConcertList = () => {
       title="Concerts"
     >
       <Container maxWidth={false}>
-        <Toolbar />
         <Box mt={3}>
           <Grid
             container
             spacing={3}
           >
-            {concerts.map((concert) => (
+            TOTO
+            {/* {concerts.map((concert) => (
               <Grid
                 item
                 key={concert.id}
@@ -61,23 +65,12 @@ const ConcertList = () => {
                   concert={concert}
                 />
               </Grid>
-            ))}
+            ))} */}
           </Grid>
         </Box>
-        {/* <Box
-          mt={3}
-          display="flex"
-          justifyContent="center"
-        >
-          <Pagination
-            color="primary"
-            count={3}
-            size="small"
-          />
-        </Box> */}
       </Container>
     </Page>
   );
 };
 
-export default ConcertList;
+export default ConcertDetails;

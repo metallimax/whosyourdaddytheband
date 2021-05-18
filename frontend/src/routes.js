@@ -5,14 +5,15 @@ import MainLayout from 'src/layouts/MainLayout';
 // import AccountView from 'src/views/account/AccountView';
 // import CustomerListView from 'src/views/customer/CustomerListView';
 // import DashboardView from 'src/views/reports/DashboardView';
-import LoginView from 'src/views/auth/LoginView';
+// import LoginView from 'src/views/auth/LoginView';
 import NotFoundView from 'src/views/errors/NotFoundView';
 // import ProductListView from 'src/views/product/ProductListView';
-import RegisterView from 'src/views/auth/RegisterView';
+// import RegisterView from 'src/views/auth/RegisterView';
 // import SettingsView from 'src/views/settings/SettingsView';
 
 import HomeView from 'src/views/home/HomeView';
 import ConcertListView from 'src/views/concert/ConcertListView';
+import ConcertDetailsView from 'src/views/concert/ConcertDetailsView';
 
 const routes = [
   {
@@ -26,6 +27,7 @@ const routes = [
       // { path: 'settings', element: <SettingsView /> },
       { path: 'home', element: <HomeView /> },
       { path: 'concerts', element: <ConcertListView /> },
+      { path: 'concert/:concertId', element: <ConcertDetailsView /> },
       { path: '*', element: <Navigate to="/404" /> }
     ]
   },
@@ -33,8 +35,8 @@ const routes = [
     path: '/',
     element: <MainLayout />,
     children: [
-      { path: 'login', element: <LoginView /> },
-      { path: 'register', element: <RegisterView /> },
+      // { path: 'login', element: <LoginView /> },
+      // { path: 'register', element: <RegisterView /> },
       { path: '404', element: <NotFoundView /> },
       { path: '/', element: <Navigate to="/app/home" /> },
       { path: '*', element: <Navigate to="/404" /> }

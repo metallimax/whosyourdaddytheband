@@ -760,8 +760,8 @@
         "model": "wyd.concert",
         "pk": 1,
         "fields": {
-          "location_name": "Vaches Folks 2017",
-          "location": "",
+          "title": "Vaches Folks 2017",
+          "venue": "Hypodrome de Divonne",
           "poster": "",
           "date": "2017-07-07",
           "members": [
@@ -769,6 +769,9 @@
             2,
             3,
             4
+          ],
+          "bands": [
+            "J.A.B."
           ]
         }
       },
@@ -776,8 +779,8 @@
         "model": "wyd.concert",
         "pk": 2,
         "fields": {
-          "location_name": "Fête de la musique d'Albertville 2014",
-          "location": "",
+          "title": "Fête de la musique d'Albertville 2014",
+          "venue": "Albertville",
           "poster": "",
           "date": "2014-06-21",
           "members": [
@@ -785,6 +788,10 @@
             2,
             3,
             5
+          ],
+          "bands": [
+            "Sinorma",
+            "Other"
           ]
         }
       },
@@ -792,8 +799,8 @@
         "model": "wyd.concert",
         "pk": 3,
         "fields": {
-          "location_name": "Zikolokos prend l'air 2014",
-          "location": "",
+          "title": "Zikolokos prend l'air 2014",
+          "venue": "Zikolokos",
           "poster": "",
           "date": "2014-09-13",
           "members": [
@@ -801,6 +808,9 @@
             2,
             3,
             5
+          ],
+          "bands": [
+            "Other"
           ]
         }
       },
@@ -808,8 +818,8 @@
         "model": "wyd.concert",
         "pk": 4,
         "fields": {
-          "location_name": "Anniversaire de mariage d'Hermann",
-          "location": "",
+          "title": "Anniversaire de mariage d'Hermann",
+          "venue": "Zikolokos",
           "poster": "",
           "date": "2015-12-12",
           "members": [
@@ -817,6 +827,9 @@
             2,
             3,
             4
+          ],
+          "bands": [
+            "Other"
           ]
         }
       },
@@ -824,8 +837,8 @@
         "model": "wyd.concert",
         "pk": 5,
         "fields": {
-          "location_name": "Chez Dre",
-          "location": "",
+          "title": "Chez Dre",
+          "venue": "Chez Dre",
           "poster": "",
           "date": "2016-01-09",
           "members": [
@@ -833,6 +846,10 @@
             2,
             3,
             4
+          ],
+          "bands": [
+            "Sinorma",
+            "Nevercold"
           ]
         }
       },
@@ -840,8 +857,8 @@
         "model": "wyd.concert",
         "pk": 6,
         "fields": {
-          "location_name": "Tremplin Gexplosion @ Fête de la musique de Gex 2016",
-          "location": "",
+          "title": "Tremplin Gexplosion 2016",
+          "venue": "Gex",
           "poster": "",
           "date": "2016-06-21",
           "members": [
@@ -849,6 +866,9 @@
             2,
             3,
             4
+          ],
+          "bands": [
+            "Other"
           ]
         }
       },
@@ -856,8 +876,8 @@
         "model": "wyd.concert",
         "pk": 7,
         "fields": {
-          "location_name": "Undertown",
-          "location": "",
+          "title": "Undertown",
+          "venue": "Undertown",
           "poster": "",
           "date": "2016-09-17",
           "members": [
@@ -865,6 +885,10 @@
             2,
             3,
             4
+          ],
+          "bands": [
+            "Attack Vertical",
+            "Smegmananas"
           ]
         }
       },
@@ -872,8 +896,8 @@
         "model": "wyd.concert",
         "pk": 8,
         "fields": {
-          "location_name": "Microbrasserie La Fabrique",
-          "location": "",
+          "title": "Microbrasserie La Fabrique",
+          "venue": "Microbrasserie La Fabrique",
           "poster": "",
           "date": "2017-03-11",
           "members": [
@@ -881,6 +905,10 @@
             2,
             3,
             4
+          ],
+          "bands": [
+            "Sinorma",
+            "Nevercold"
           ]
         }
       },
@@ -888,8 +916,8 @@
         "model": "wyd.concert",
         "pk": 9,
         "fields": {
-          "location_name": "Music City Tour @ Bouffon de la Taverne",
-          "location": "",
+          "title": "Music City Tour",
+          "venue": "Bouffon de la Taverne",
           "poster": "",
           "date": "2017-04-21",
           "members": [
@@ -897,6 +925,9 @@
             2,
             3,
             4
+          ],
+          "bands": [
+            "Other"
           ]
         }
       },
@@ -904,8 +935,8 @@
         "model": "wyd.concert",
         "pk": 10,
         "fields": {
-          "location_name": "Les Pâquis Sont à la Rue 2017",
-          "location": "",
+          "title": "Les Pâquis Sont à la Rue 2017",
+          "venue": "Les Pâquis",
           "poster": "",
           "date": "2017-06-17",
           "members": [
@@ -913,6 +944,108 @@
             2,
             3,
             4
+          ],
+          "bands": [
+            "AM/PM",
+            "Versus"
+          ]
+        }
+      },
+      {
+        "model": "wyd.concert",
+        "pk": 11,
+        "fields": {
+          "title": "Death'Skalade 2k17",
+          "venue": "ABARC",
+          "poster": "",
+          "date": "2017-12-08",
+          "members": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "bands": [
+            "Brokenhead",
+            "Burning Flesh"
+          ]
+        }
+      },
+      {
+        "model": "wyd.concert",
+        "pk": 12,
+        "fields": {
+          "title": "Crabcore Fest I",
+          "venue": "Villa Tacchini",
+          "poster": "",
+          "date": "2018-09-29",
+          "members": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "bands": [
+            "Versus",
+            "Other"
+          ]
+        }
+      },
+      {
+        "model": "wyd.concert",
+        "pk": 13,
+        "fields": {
+          "title": "Fête de la musique de Gex",
+          "venue": "Gex",
+          "poster": "",
+          "date": "2019-06-21",
+          "members": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "bands": [
+            "Other"
+          ]
+        }
+      },
+      {
+        "model": "wyd.concert",
+        "pk": 14,
+        "fields": {
+          "title": "Undertown",
+          "venue": "Undertown",
+          "poster": "",
+          "date": "2019-06-26",
+          "members": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "bands": [
+            "Ultra Violence",
+            "Insanity Alert"
+          ]
+        }
+      },
+      {
+        "model": "wyd.concert",
+        "pk": 15,
+        "fields": {
+          "title": "The Rockies",
+          "venue": "The Rockies",
+          "poster": "",
+          "date": "2020-01-24",
+          "members": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "bands": [
+            "Among Vultures"
           ]
         }
       }

@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
-  Avatar,
+  // Avatar,
   Box,
+  Button,
   Card,
   CardContent,
   Divider,
@@ -11,8 +12,11 @@ import {
   Typography,
   makeStyles
 } from '@material-ui/core';
-import AccessTimeIcon from '@material-ui/icons/AccessTime';
-import GetAppIcon from '@material-ui/icons/GetApp';
+// import AccessTimeIcon from '@material-ui/icons/AccessTime';
+// import GetAppIcon from '@material-ui/icons/GetApp';
+import { Link as RouterLink } from 'react-router-dom';
+
+import { stringDateFormat } from 'src/common/utils';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,8 +32,10 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const ConcertCard = ({ className, product, ...rest }) => {
+const ConcertCard = ({ className, concert, ...rest }) => {
   const classes = useStyles();
+
+  const concertUrl = `/app/concert/${concert.id}`;
 
   return (
     <Card
@@ -37,31 +43,31 @@ const ConcertCard = ({ className, product, ...rest }) => {
       {...rest}
     >
       <CardContent>
-        <Box
+        {/* <Box
           display="flex"
           justifyContent="center"
           mb={3}
         >
           <Avatar
-            alt="Product"
-            src={product.media}
+            alt="Concert"
+            src={concert.media}
             variant="square"
           />
-        </Box>
+        </Box> */}
         <Typography
           align="center"
           color="textPrimary"
           gutterBottom
           variant="h4"
         >
-          {product.title}
+          {concert.title}
         </Typography>
         <Typography
           align="center"
           color="textPrimary"
           variant="body1"
         >
-          {product.description}
+          {stringDateFormat(concert.date)}
         </Typography>
       </CardContent>
       <Box flexGrow={1} />
@@ -76,7 +82,7 @@ const ConcertCard = ({ className, product, ...rest }) => {
             className={classes.statsItem}
             item
           >
-            <AccessTimeIcon
+            {/* <AccessTimeIcon
               className={classes.statsIcon}
               color="action"
             />
@@ -86,25 +92,20 @@ const ConcertCard = ({ className, product, ...rest }) => {
               variant="body2"
             >
               Updated 2hr ago
-            </Typography>
+            </Typography> */}
           </Grid>
           <Grid
             className={classes.statsItem}
             item
           >
-            <GetAppIcon
-              className={classes.statsIcon}
-              color="action"
-            />
-            <Typography
-              color="textSecondary"
-              display="inline"
-              variant="body2"
-            >
-              {product.totalDownloads}
-              {' '}
-              Downloads
-            </Typography>
+            <RouterLink to={concertUrl}>
+              <Button
+                color="primary"
+                variant="contained"
+              >
+                Details
+              </Button>
+            </RouterLink>
           </Grid>
         </Grid>
       </Box>
@@ -114,7 +115,7 @@ const ConcertCard = ({ className, product, ...rest }) => {
 
 ConcertCard.propTypes = {
   className: PropTypes.string,
-  product: PropTypes.object.isRequired
+  concert: PropTypes.object.isRequired
 };
 
 export default ConcertCard;
