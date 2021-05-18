@@ -49,8 +49,10 @@ const typeDefs = gql`
   type Record {
     id: ID!
     title: String!
+    type: String
+    artwork: String
     recorded: String
-    launched: String
+    released: String
     songs: [Song]
   }
 

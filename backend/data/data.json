@@ -146,7 +146,7 @@
           "birth_date": "1989-12-05",
           "avatar": "benji.jpg",
           "member_from": "2012-01-01",
-          "member_until": null,
+          "member_until": "2018-10-01",
           "roles": [
             4,
             5
@@ -194,7 +194,7 @@
           "lastname": "Aubeuf",
           "pseudo": "Sly",
           "birth_date": "1975-09-20",
-          "avatar": "sly.jpg",
+          "avatar": "sly.png",
           "member_from": "2012-01-01",
           "member_until": null,
           "roles": [
@@ -569,7 +569,7 @@
         "fields": {
           "title": "Hester Mofet",
           "duration": "00:07:08",
-          "lyrics": "Hester Mofet’s been broken\r\nShe was living with no problem\r\n‘N then she met a hurricane\r\nBut nobody have seen her again\r\n\r\nHester Mofet has been ruined\r\nToughly hurt by any mean\r\nPersecuted in deep sorrow\r\nAll she has left is her shadow\r\n\r\n[Chorus]\r\nHester Mofet is still alive\r\nAnd if one day she would have died\r\nHer body starts to come undone\r\nThen resurrecting from the dark\r\nHester Mofet is gonna burn\r\nAnd even swallowed by the flames\r\nTot’ly reduced to smoky ash\r\nShe seems to be a fire-bird\r\nTurning to life again\r\nHester Mofet has been raped\r\nHer mind has been hard twisted\r\nShe was trampled so much times\r\nSo she was buried in the ground\r\n\r\nHester Mofet’s compromised\r\nShe’s been taken by surprise\r\nHer back has just felt the knife\r\nAnd then she fell within the night\r\n\r\n[Chorus]\r\n\r\nHester Mofet has been mistreated\r\nSo much of us witnessed it\r\nBut just a few has helped her stand\r\nSo blind we are from some misdeed\r\n\r\nHester Mofet !!!\r\n\r\nNO! NO! NO NO NO NO!",
+          "lyrics": "Hester Mofet’s been broken\r\nShe was living with no problem\r\n‘N then she met a hurricane\r\nBut nobody have seen her again\r\n\r\nHester Mofet has been ruined\r\nToughly hurt by any mean\r\nPersecuted in deep sorrow\r\nAll she has left is her shadow\r\n\r\n[Chorus]\r\nHester Mofet is still alive\r\nAnd if one day she would have died\r\nHer body starts to come undone\r\nThen resurrecting from the dark\r\nHester Mofet is gonna burn\r\nAnd even swallowed by the flames\r\nTot’ly reduced to smoky ash\r\nShe seems to be a fire-bird\r\nTurning to life again\r\n\r\nHester Mofet has been raped\r\nHer mind has been hard twisted\r\nShe was trampled so much times\r\nSo she was buried in the ground\r\n\r\nHester Mofet’s compromised\r\nShe’s been taken by surprise\r\nHer back has just felt the knife\r\nAnd then she fell within the night\r\n\r\n[Chorus]\r\n\r\nHester Mofet has been mistreated\r\nSo much of us witnessed it\r\nBut just a few has helped her stand\r\nSo blind we are from some misdeed\r\n\r\nHester Mofet !!!\r\n\r\nNO! NO! NO NO NO NO!",
           "authors": [
             1
           ],
@@ -1056,9 +1056,10 @@
         "pk": 1,
         "fields": {
           "title": "Deprivation",
-          "artwork": "",
+          "type": "EP",
+          "artwork": "deprivation.jpg",
           "recorded": "2018-03",
-          "launched": "2018-09"
+          "released": "2018-09"
         }
       }
     ],
