@@ -26,6 +26,7 @@ const typeDefs = gql`
     firstname: String
     lastname: String
     fullname: String
+    fullnameAka: String
     pseudo: String
     birth_date: String
     avatar: String
@@ -73,6 +74,8 @@ const typeDefs = gql`
     record(id: ID!): Record
     concerts: [Concert]
     concert(id: ID!): Concert
+    songs: [Song]
+    song(id: ID!): Song
   }
 `;
 
@@ -109,12 +112,27 @@ const resolvers = {
 
       return wyd.getConcert(args.id);
     },
+
+    songs: async (_parent, _args, { dataSources: { wyd } }) => {
+
+      return wyd.getSongs();
+    },
+
+    song: async (_parent, args, { dataSources: { wyd } }) => {
+
+      return wyd.getSong(args.id);
+    },
   },
 
   Member: {
     fullname: async (parent, _args) => {
 
       return `${parent.firstname} ${parent.lastname}`;
+    },
+
+    fullnameAka: async (parent, _args) => {
+
+      return `${parent.firstname} ${parent.lastname} a.k.a. "${parent.pseudo}"`;
     },
 
     roles: async (parent, _args, { dataSources: { wyd } }) => {

@@ -112,6 +112,10 @@ class Wyd extends DataSource {
     return _lookup(COL_SONG, id);
   }
 
+  getSongs() {
+    return _getMappedItems(COL_SONG);
+  }
+
   getSongsByRecord(recordId) {
     return _getMappedItems(COL_RECORD_TRACK, {record: recordId})
       .map((track) => {
