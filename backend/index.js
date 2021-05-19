@@ -43,6 +43,8 @@ const typeDefs = gql`
     lyrics: String
     authors: [Member]
     composers: [Member]
+    records: [Record]
+    concerts: [Concert]
     rank: Int
   }
 
@@ -61,6 +63,7 @@ const typeDefs = gql`
     title: String
     venue: String
     date: String
+    poster: String
     members: [Member]
     bands: [String]
     songs: [Song]
@@ -183,6 +186,16 @@ const resolvers = {
     composers: async (parent, _args, { dataSources: { wyd } }) => {
 
       return parent.composers.map((memberId) => wyd.getMember(memberId));
+    },
+
+    records: async (parent, _args, { dataSources: { wyd } }) => {
+
+      return wyd.getRecordsBySong(parent.id);
+    },
+
+    concerts: async (parent, _args, { dataSources: { wyd } }) => {
+
+      return wyd.getConcertsBySong(parent.id);
     },
   },
 };

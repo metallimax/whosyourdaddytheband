@@ -100,12 +100,26 @@ class Wyd extends DataSource {
     return _getMappedItems(COL_RECORD);
   }
 
+  getRecordsBySong(songId) {
+    return _getMappedItems(COL_RECORD_TRACK, {song: songId})
+      .map((track) => {
+        return this.getRecord(track.record);
+      });
+  }
+
   getConcert(id) {
     return _lookup(COL_CONCERT, id);
   }
 
   getConcerts() {
     return _getMappedItems(COL_CONCERT);
+  }
+
+  getConcertsBySong(songId) {
+    return _getMappedItems(COL_CONCERT_SETLIST, {song: songId})
+      .map((entry) => {
+        return this.getConcert(entry.concert);
+      });
   }
 
   getSong(id) {
