@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-// import { Link as RouterLink, useLocation } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link as RouterLink } from 'react-router-dom';
+
 import PropTypes from 'prop-types';
 import {
   // Avatar,
   Box,
-  // Button,
-  // Divider,
+  Button,
+  Divider,
   Drawer,
   Hidden,
   List,
@@ -154,6 +154,21 @@ const NavBar = ({ onMobileClose, openMobile }) => {
           ))}
         </List>
       </Box>
+      <Divider />
+      <Box
+        display="flex"
+        justifyContent="center"
+        mt={2}
+      >
+        <RouterLink to="/app/booking">
+          <Button
+            color="primary"
+            variant="contained"
+          >
+            Book the band!
+          </Button>
+        </RouterLink>
+      </Box>
     </Box>
   );
 
@@ -190,7 +205,7 @@ NavBar.propTypes = {
 };
 
 NavBar.defaultProps = {
-  onMobileClose: () => {},
+  onMobileClose: () => { },
   openMobile: false
 };
 

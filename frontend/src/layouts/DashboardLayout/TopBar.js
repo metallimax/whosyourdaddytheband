@@ -7,7 +7,7 @@ import {
   AppBar,
   // Badge,
   Box,
-  Button,
+  // Button,
   Hidden,
   IconButton,
   Toolbar,
@@ -45,8 +45,8 @@ const TopBar = ({
           <Logo />
         </RouterLink> */}
         <Box flexGrow={1} />
-        <Hidden mdDown>
-          {/* <IconButton color="inherit">
+        {/* <Hidden mdDown>
+          <IconButton color="inherit">
             <Badge
               badgeContent={notifications.length}
               color="primary"
@@ -57,14 +57,8 @@ const TopBar = ({
           </IconButton>
           <IconButton color="inherit">
             <InputIcon />
-          </IconButton> */}
-          <Button
-            color="primary"
-            variant="contained"
-          >
-            Book the band!
-          </Button>
-        </Hidden>
+          </IconButton>
+        </Hidden> */}
         <Hidden lgUp>
           <IconButton
             color="inherit"

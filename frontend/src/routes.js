@@ -14,6 +14,7 @@ import MemberDetailsView from 'src/views/member/MemberDetailsView';
 import RecordListView from 'src/views/record/RecordListView';
 import RecordDetailsView from 'src/views/record/RecordDetailsView';
 import ContactView from 'src/views/contact/ContactView';
+import BookingView from 'src/views/contact/BookingView';
 
 const routes = [
   {
@@ -30,6 +31,7 @@ const routes = [
       { path: 'records', element: <RecordListView /> },
       { path: 'records/:recordId', element: <RecordDetailsView /> },
       { path: 'contact', element: <ContactView /> },
+      { path: 'booking', element: <BookingView /> },
       { path: '*', element: <Navigate to="/404" /> }
     ]
   },
