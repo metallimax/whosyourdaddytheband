@@ -6,11 +6,12 @@ import {
   Box,
   Container,
   Grid,
-  List,
-  ListItem,
-  ListItemText,
-  ListSubheader,
   Paper,
+  TableContainer,
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
   Typography,
   makeStyles
 } from '@material-ui/core';
@@ -62,8 +63,14 @@ const SongDetails = () => {
   title = `${title}: ${data.song.title}`;
 
   const authors = [...data.song.authors];
+  const authorsStr = authors.map((author) => author.fullname).join(', ');
   const composers = [...data.song.composers];
+  const composersStr = composers.map((composer) => composer.fullname).join(', ');
   const duration = stringDurationFormat(data.song.duration);
+  const recordsStr = data.song.records.map((record) => record.title).join(', ');
+  const concerts = [...data.song.concerts];
+  concerts.sort((a, b) => (a.date < b.date ? 1 : -1));
+  const concertsStr = concerts.map((concert) => concert.title).join(', ');
 
   return (
     <Page
@@ -90,62 +97,50 @@ const SongDetails = () => {
                   }
 
                   return (
-                    <p key={key}>{line}</p>
+                    <React.Fragment key={key}>
+                      {line}
+                      <br />
+                    </React.Fragment>
                   );
                 })}
               </Typography>
             </Paper>
           </Grid>
           <Grid item xs={4}>
-            <Paper className={clsx(classes.paper, classes.collab)}>
-              <List
-                component="nav"
-                aria-labelledby="nested-list-subheader"
-                subheader={(
-                  <ListSubheader component="div" id="nested-list-subheader">
-                    Duration
-                  </ListSubheader>
-                )}
-              >
-                <ListItem>
-                  <ListItemText primary={duration} />
-                </ListItem>
-              </List>
-              <List
-                component="nav"
-                aria-labelledby="nested-list-subheader"
-                subheader={(
-                  <ListSubheader component="div" id="nested-list-subheader">
-                    Authors
-                  </ListSubheader>
-                )}
-              >
-                {authors.map((author) => {
-                  return (
-                    <ListItem key={`authors_${author.id}`}>
-                      <ListItemText primary={author.fullname} />
-                    </ListItem>
-                  );
-                })}
-              </List>
-              <List
-                component="nav"
-                aria-labelledby="nested-list-subheader"
-                subheader={(
-                  <ListSubheader component="div" id="nested-list-subheader">
-                    Composers
-                  </ListSubheader>
-                )}
-              >
-                {composers.map((composer) => {
-                  return (
-                    <ListItem key={`composers_${composer.id}`}>
-                      <ListItemText primary={composer.fullname} />
-                    </ListItem>
-                  );
-                })}
-              </List>
-            </Paper>
+            <TableContainer component={Paper}>
+              <Table className={classes.table} aria-label="simple table">
+                <TableBody>
+                  <TableRow>
+                    <TableCell variant="head">Duration</TableCell>
+                    <TableCell>{duration}</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell variant="head">Authors</TableCell>
+                    <TableCell>{authorsStr}</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell variant="head">Composers</TableCell>
+                    <TableCell>{composersStr}</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Grid>
+          <Grid item xs={4}>
+            <TableContainer component={Paper}>
+              <Table className={classes.table} aria-label="simple table">
+                <TableBody>
+                  <TableRow>
+                    <TableCell variant="head">Records</TableCell>
+                    <TableCell>{recordsStr}</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell variant="head">Concerts</TableCell>
+                    <TableCell>{concertsStr}</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </TableContainer>
           </Grid>
         </Grid>
       </Container>

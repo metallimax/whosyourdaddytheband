@@ -1,31 +1,27 @@
 import React from 'react';
-import clsx from 'clsx';
+// import clsx from 'clsx';
 import { useMatch, Link as RouterLink } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import {
   Box,
   Container,
   Grid,
-  IconButton,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemSecondaryAction,
-  ListItemText,
-  // ListSubheader,
   Paper,
+  TableContainer,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
   Typography,
   makeStyles
 } from '@material-ui/core';
-import {
-  ArrowRightCircle as ArrowRightCircleIcon,
-  Music as MusicIcon,
-} from 'react-feather';
 
 import Page from 'src/components/Page';
 
 import api from 'src/common/api';
 import Loading from 'src/components/Loading';
+import { stringDurationFormat } from 'src/common/utils';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -66,6 +62,12 @@ const useStyles = makeStyles((theme) => ({
       textDecoration: 'underline',
     },
   },
+  artwork: {
+    padding: theme.spacing(1),
+  },
+  artworkImg: {
+    width: '100%',
+  }
 }));
 
 const RecordDetails = () => {
@@ -90,6 +92,10 @@ const RecordDetails = () => {
 
   const songs = [...data.record.songs];
   songs.sort((a, b) => { return a.rank < b.rank ? -1 : 1; });
+  const artworkUrl = `/static/images/artworks/${data.record.artwork}`;
+  const artwork = !artworkUrl ? null : (
+    <img className={classes.artworkImg} alt="artwork" src={artworkUrl} />
+  );
 
   return (
     <Page
@@ -104,81 +110,41 @@ const RecordDetails = () => {
         </Box>
         <Grid container spacing={3}>
           <Grid item xs={4}>
-            <Paper className={clsx(classes.paper, classes.lyrics)}>
-              <List component="nav" aria-label="main mailbox folders">
-                {songs.map((song) => {
-                  const songUrl = `/app/songs/${song.id}`;
+            <TableContainer component={Paper}>
+              <Table className={classes.table} aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell align="right">#</TableCell>
+                    <TableCell>Song</TableCell>
+                    <TableCell>Duration</TableCell>
+                    <TableCell align="center">Actions</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {songs.map((song) => {
+                    const songUrl = `/app/songs/${song.id}`;
 
-                  return (
-                    <ListItem key={`song_${song.id}`}>
-                      <ListItemIcon>
-                        <MusicIcon />
-                      </ListItemIcon>
-                      <ListItemText className={classes.songRank} primary={song.rank} />
-                      <ListItemText className={classes.songTitle} primary={song.title} />
-                      <ListItemSecondaryAction>
-                        <RouterLink to={songUrl}>
-                          <IconButton edge="end" aria-label="delete">
-                            <ArrowRightCircleIcon />
-                          </IconButton>
-                        </RouterLink>
-                      </ListItemSecondaryAction>
-                    </ListItem>
-                  );
-                })}
-              </List>
-            </Paper>
+                    return (
+                      <TableRow key={`band_${song.id}`}>
+                        <TableCell align="right">{song.rank}</TableCell>
+                        <TableCell><RouterLink to={songUrl}>{song.title}</RouterLink></TableCell>
+                        <TableCell>{stringDurationFormat(song.duration)}</TableCell>
+                        <TableCell align="center">
+                          {/* <ArrowRightCircleIcon /> */}
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
+                </TableBody>
+              </Table>
+            </TableContainer>
           </Grid>
           <Grid item xs={4}>
-            {/* <Paper className={clsx(classes.paper, classes.collab)}>
-              <List
-                component="nav"
-                aria-labelledby="nested-list-subheader"
-                subheader={(
-                  <ListSubheader component="div" id="nested-list-subheader">
-                    Duration
-                  </ListSubheader>
-                )}
-              >
-                <ListItem>
-                  <ListItemText primary={duration} />
-                </ListItem>
-              </List>
-              <List
-                component="nav"
-                aria-labelledby="nested-list-subheader"
-                subheader={(
-                  <ListSubheader component="div" id="nested-list-subheader">
-                    Authors
-                  </ListSubheader>
-                )}
-              >
-                {authors.map((author) => {
-                  return (
-                    <ListItem key={`authors_${author.id}`}>
-                      <ListItemText primary={author.fullname} />
-                    </ListItem>
-                  );
-                })}
-              </List>
-              <List
-                component="nav"
-                aria-labelledby="nested-list-subheader"
-                subheader={(
-                  <ListSubheader component="div" id="nested-list-subheader">
-                    Composers
-                  </ListSubheader>
-                )}
-              >
-                {composers.map((composer) => {
-                  return (
-                    <ListItem key={`composers_${composer.id}`}>
-                      <ListItemText primary={composer.fullname} />
-                    </ListItem>
-                  );
-                })}
-              </List>
-            </Paper> */}
+            <Paper>
+              <Box className={classes.artwork}>
+                {artwork}
+              </Box>
+            </Paper>
           </Grid>
         </Grid>
       </Container>

@@ -14,8 +14,6 @@ import {
 } from '@material-ui/core';
 import { Link as RouterLink } from 'react-router-dom';
 
-import { stringDateFormat } from 'src/common/utils';
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -59,13 +57,6 @@ const SongCard = ({ className, song, ...rest }) => {
           variant="h4"
         >
           {song.title}
-        </Typography>
-        <Typography
-          align="center"
-          color="textPrimary"
-          variant="body1"
-        >
-          {stringDateFormat(song.date)}
         </Typography>
       </CardContent>
       <Box flexGrow={1} />

@@ -21,6 +21,7 @@ export default {
             venue
             date
             members {
+              id
               pseudo
               birth_date
               roles {
@@ -32,6 +33,7 @@ export default {
               id
               title
               rank
+              duration
             }
           }
         }
@@ -58,6 +60,16 @@ export default {
             composers {
               id
               fullname
+            }
+            records {
+              title
+              artwork
+            }
+            concerts {
+              id
+              title
+              date
+              poster
             }
           }
         }
@@ -121,6 +133,7 @@ export default {
             songs {
               id
               title
+              duration
               rank
             }
           }
