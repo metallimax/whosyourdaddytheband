@@ -85,7 +85,7 @@ class Wyd extends DataSource {
     return _lookup(COL_GEAR_TYPE, id);
   }
 
-  getGearsByMemberId(memberId) {
+  getGearsByMember(memberId) {
     return _getMappedItems(COL_GEAR, {
       member: memberId,
       active: true,
@@ -107,6 +107,11 @@ class Wyd extends DataSource {
       });
   }
 
+  getRecordsByMember(memberId) {
+    return _getMappedItems(COL_RECORD)
+      .filter((record) => record.members.indexOf(memberId) > -1);
+  }
+
   getConcert(id) {
     return _lookup(COL_CONCERT, id);
   }
@@ -120,6 +125,11 @@ class Wyd extends DataSource {
       .map((entry) => {
         return this.getConcert(entry.concert);
       });
+  }
+
+  getConcertsByMember(memberId) {
+    return _getMappedItems(COL_CONCERT)
+      .filter((concert) => concert.members.indexOf(memberId) > -1);
   }
 
   getSong(id) {

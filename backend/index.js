@@ -28,12 +28,15 @@ const typeDefs = gql`
     fullname: String
     fullnameAka: String
     pseudo: String
+    bio: String
     birth_date: String
     avatar: String
     member_from: String
     member_until: String
     roles: [Role]
     gears: [Gear]
+    concerts: [Concert]
+    records: [Record]
   }
 
   type Song {
@@ -56,6 +59,7 @@ const typeDefs = gql`
     recorded: String
     released: String
     songs: [Song]
+    members: [Member]
   }
 
   type Concert {
@@ -147,7 +151,17 @@ const resolvers = {
 
     gears: async (parent, _args, { dataSources: { wyd } }) => {
 
-      return wyd.getGearsByMemberId(parent.id);
+      return wyd.getGearsByMember(parent.id);
+    },
+
+    concerts: async (parent, _args, { dataSources: { wyd } }) => {
+
+      return wyd.getConcertsByMember(parent.id);
+    },
+
+    records: async (parent, _args, { dataSources: { wyd } }) => {
+
+      return wyd.getRecordsByMember(parent.id);
     },
   },
 

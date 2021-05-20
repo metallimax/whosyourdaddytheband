@@ -100,6 +100,13 @@
         "fields": {
           "name": "Bass"
         }
+      },
+      {
+        "model": "wyd.geartype",
+        "pk": 10,
+        "fields": {
+          "name": "Bass Amplifier"
+        }
       }
     ],
     "wyd.member": [
@@ -110,8 +117,9 @@
           "firstname": "Maxime",
           "lastname": "Delrieu",
           "pseudo": "Max",
+          "bio": "TBD ...",
           "birth_date": "1978-10-05",
-          "avatar": "max.png",
+          "avatar": "max.jpg",
           "member_from": "2012-01-01",
           "member_until": null,
           "roles": [
@@ -127,6 +135,7 @@
           "firstname": "David",
           "lastname": "Billard",
           "pseudo": "David'ian Kontos",
+          "bio": "TBD ...",
           "birth_date": "1979-05-10",
           "avatar": "billard.jpg",
           "member_from": "2012-01-01",
@@ -143,6 +152,7 @@
           "firstname": "Benjamin",
           "lastname": "Vincent",
           "pseudo": "Benji",
+          "bio": "TBD ...",
           "birth_date": "1989-12-05",
           "avatar": "benji.jpg",
           "member_from": "2012-01-01",
@@ -160,6 +170,7 @@
           "firstname": "Pierre-Yves",
           "lastname": "Kugler",
           "pseudo": "Pyk",
+          "bio": "TBD ...",
           "birth_date": "1995-04-18",
           "avatar": "pyk.jpg",
           "member_from": "2015-01-01",
@@ -177,6 +188,7 @@
           "firstname": "André",
           "lastname": "Schmickler",
           "pseudo": "Dredre",
+          "bio": "TBD ...",
           "birth_date": "1991-09-28",
           "avatar": "dredre.jpg",
           "member_from": "2014-01-01",
@@ -193,6 +205,7 @@
           "firstname": "Sylvain",
           "lastname": "Aubeuf",
           "pseudo": "Sly",
+          "bio": "TBD ...",
           "birth_date": "1975-09-20",
           "avatar": "sly.png",
           "member_from": "2012-01-01",
@@ -361,7 +374,7 @@
         "fields": {
           "type": 4,
           "member": 1,
-          "name": "Shure 55 w/ custom bent stand",
+          "name": "Super Shure 55 ltd. Pitch Black w/ custom bent stand",
           "active": true
         }
       },
@@ -1126,7 +1139,13 @@
           "type": "EP",
           "artwork": "deprivation.jpg",
           "recorded": "2018-03",
-          "released": "2018-09"
+          "released": "2018-09",
+          "members": [
+            1,
+            2,
+            3,
+            4
+          ]
         }
       }
     ],
