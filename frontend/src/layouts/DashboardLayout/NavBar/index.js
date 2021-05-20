@@ -14,27 +14,14 @@ import {
   makeStyles
 } from '@material-ui/core';
 import {
-  // AlertCircle as AlertCircleIcon,
-  // BarChart as BarChartIcon,
   Disc as DiscIcon,
   Home as HomeIcon,
   Music as MusicIcon,
   Send as SendIcon,
   Speaker as SpeakerIcon,
   Users as UsersIcon
-  // Lock as LockIcon,
-  // Settings as SettingsIcon,
-  // ShoppingBag as ShoppingBagIcon,
-  // UserPlus as UserPlusIcon,
-  // User as UserIcon,
 } from 'react-feather';
 import NavItem from './NavItem';
-
-// const user = {
-//   avatar: '/static/images/avatars/avatar_6.png',
-//   jobTitle: 'Senior Developer',
-//   name: 'Katarina Smith'
-// };
 
 const items = [
   {
@@ -67,46 +54,6 @@ const items = [
     icon: SendIcon,
     title: 'Contact'
   },
-  // {
-  //   href: '/app/dashboard',
-  //   icon: BarChartIcon,
-  //   title: 'Dashboard'
-  // },
-  // {
-  //   href: '/app/customers',
-  //   icon: UsersIcon,
-  //   title: 'Customers'
-  // },
-  // {
-  //   href: '/app/products',
-  //   icon: ShoppingBagIcon,
-  //   title: 'Products'
-  // },
-  // {
-  //   href: '/app/account',
-  //   icon: UserIcon,
-  //   title: 'Account'
-  // },
-  // {
-  //   href: '/app/settings',
-  //   icon: SettingsIcon,
-  //   title: 'Settings'
-  // },
-  // {
-  //   href: '/login',
-  //   icon: LockIcon,
-  //   title: 'Login'
-  // },
-  // {
-  //   href: '/register',
-  //   icon: UserPlusIcon,
-  //   title: 'Register'
-  // },
-  // {
-  //   href: '/404',
-  //   icon: AlertCircleIcon,
-  //   title: 'Error'
-  // }
 ];
 
 const useStyles = makeStyles(() => ({
@@ -142,22 +89,10 @@ const NavBar = ({ onMobileClose, openMobile }) => {
       display="flex"
       flexDirection="column"
     >
-      <Box p={2}>
-        <List>
-          {items.map((item) => (
-            <NavItem
-              href={item.href}
-              key={item.title}
-              title={item.title}
-              icon={item.icon}
-            />
-          ))}
-        </List>
-      </Box>
-      <Divider />
       <Box
         display="flex"
         justifyContent="center"
+        mb={2}
         mt={2}
       >
         <RouterLink to="/app/booking">
@@ -168,6 +103,21 @@ const NavBar = ({ onMobileClose, openMobile }) => {
             Book the band!
           </Button>
         </RouterLink>
+      </Box>
+
+      <Divider />
+
+      <Box pl={3}>
+        <List>
+          {items.map((item) => (
+            <NavItem
+              href={item.href}
+              key={item.title}
+              title={item.title}
+              icon={item.icon}
+            />
+          ))}
+        </List>
       </Box>
     </Box>
   );

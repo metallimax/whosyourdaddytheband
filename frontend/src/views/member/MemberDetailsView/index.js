@@ -46,6 +46,10 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     borderRadius: '10%',
   },
+  scrollableList: {
+    maxHeight: 200,
+    overflow: 'auto',
+  },
 }));
 
 const StyledTableCell = withStyles(() => ({
@@ -174,7 +178,7 @@ const MemberDetails = () => {
                 <Typography variant="h4">
                   Records done
                 </Typography>
-                <List dense>
+                <List className={classes.scrollableList} dense>
                   {records.map((record) => {
                     return (
                       <ListItem key={`record_${record.id}`}>
@@ -192,7 +196,7 @@ const MemberDetails = () => {
                 <Typography variant="h4">
                   Concerts done
                 </Typography>
-                <List dense>
+                <List className={classes.scrollableList} dense>
                   {concerts.map((concert) => {
                     return (
                       <ListItem key={`concert_${concert.id}`}>

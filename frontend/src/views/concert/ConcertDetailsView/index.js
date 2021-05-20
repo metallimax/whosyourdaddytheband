@@ -55,13 +55,6 @@ const useStyles = makeStyles((theme) => ({
     borderLeft: `2px solid ${theme.palette.divider}`,
     padding: theme.spacing(1, 2),
   },
-  link: {
-    color: theme.palette.primary.main,
-    textDecoration: 'none',
-    '&:hover': {
-      textDecoration: 'underline',
-    },
-  },
   boxTitle: {
     padding: theme.spacing(1),
   },

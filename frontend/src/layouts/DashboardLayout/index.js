@@ -7,10 +7,14 @@ import TopBar from './TopBar';
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.dark,
+    color: theme.palette.text.primary,
     display: 'flex',
     height: '100%',
     overflow: 'hidden',
-    width: '100%'
+    width: '100%',
+    '& a:not([role="button"])': {
+      color: theme.palette.text.anchor,
+    }
   },
   wrapper: {
     display: 'flex',
