@@ -95,6 +95,7 @@ export default {
             fullname
             fullnameAka
             pseudo
+            bio
             birth_date
             avatar
             member_from
@@ -107,6 +108,16 @@ export default {
               type {
                 name
               }
+            }
+            concerts {
+              id
+              title
+              date
+            }
+            records {
+              id
+              title
+              recorded
             }
           }
         }

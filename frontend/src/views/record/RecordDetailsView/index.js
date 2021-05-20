@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
   },
   artworkImg: {
     width: '100%',
-  }
+  },
 }));
 
 const RecordDetails = () => {
@@ -109,6 +109,11 @@ const RecordDetails = () => {
           </Typography>
         </Box>
         <Grid container spacing={3}>
+          <Grid item xs={3}>
+            <Box className={classes.artwork}>
+              {artwork}
+            </Box>
+          </Grid>
           <Grid item xs={4}>
             <TableContainer component={Paper}>
               <Table className={classes.table} aria-label="simple table">
@@ -138,13 +143,6 @@ const RecordDetails = () => {
                 </TableBody>
               </Table>
             </TableContainer>
-          </Grid>
-          <Grid item xs={4}>
-            <Paper>
-              <Box className={classes.artwork}>
-                {artwork}
-              </Box>
-            </Paper>
           </Grid>
         </Grid>
       </Container>
