@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export default {
-  backendUrl: 'http://localhost:4000/',
+  backendUrl: 'http://localhost:4000/graphql',
   graphql: {
     query: {
       CONCERTS: gql`
