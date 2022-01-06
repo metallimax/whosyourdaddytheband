@@ -113,12 +113,12 @@ const RecordDetails = () => {
           </Typography>
         </Box>
         <Grid container spacing={3}>
-          <Grid item xs={3}>
+          <Grid item md={3} xs={12}>
             <Box className={classes.artwork}>
               {artwork}
             </Box>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item md={4} xs={12}>
             <TableContainer component={Paper}>
               <Table className={classes.table} aria-label="simple table">
                 <TableHead>
@@ -148,7 +148,7 @@ const RecordDetails = () => {
               </Table>
             </TableContainer>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item md={3} xs={12}>
             <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
               Listen on
             </Typography>

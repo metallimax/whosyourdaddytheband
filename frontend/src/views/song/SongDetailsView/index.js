@@ -84,7 +84,7 @@ const SongDetails = () => {
           </Typography>
         </Box>
         <Grid container spacing={3}>
-          <Grid item xs={4}>
+          <Grid item md={4} xs={12}>
             <Paper className={clsx(classes.paper, classes.lyrics)}>
               <Typography variant="body1">
                 {!data.song.lyrics ? (<span><i>No lyrics</i></span>) : data.song.lyrics.split(/\r?\n/g).map((line, index) => {
@@ -106,7 +106,7 @@ const SongDetails = () => {
               </Typography>
             </Paper>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item md={4} xs={12}>
             <TableContainer component={Paper}>
               <Table className={classes.table} aria-label="simple table">
                 <TableBody>
@@ -126,7 +126,7 @@ const SongDetails = () => {
               </Table>
             </TableContainer>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item md={4} xs={12}>
             <TableContainer component={Paper}>
               <Table className={classes.table} aria-label="simple table">
                 <TableBody>
