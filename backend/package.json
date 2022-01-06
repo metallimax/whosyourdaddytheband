@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "nodemon --watch src --ext js,graphql --exec babel-node  index.js",
+    "build": "babel src --out-dir build && shx cp .env build 2>/dev/null || : && shx cp src/schema/schema.graphql build/schema",
+    "start": "npm run build && node build/index.js"
   },
   "keywords": [],
   "author": "",
