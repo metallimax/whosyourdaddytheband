@@ -141,6 +141,7 @@ export default {
             type
             released
             artwork
+            links
             songs {
               id
               title

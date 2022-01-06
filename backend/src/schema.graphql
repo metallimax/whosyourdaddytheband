@@ -46,6 +46,7 @@ type Record {
   title: String!
   type: String
   artwork: String
+  links: [String]
   recorded: String
   released: String
   songs: [Song]

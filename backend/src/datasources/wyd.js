@@ -1,9 +1,9 @@
 const fs = require('fs');
-// const { DataSource } = require('apollo-server');
+const path = require('path');
 const { DataSource, DataSourceConfig } = require('apollo-datasource');
 
 let data = {};
-const dataFilename = './data/data.json';
+const dataFilename = path.join(__dirname, '../data/data.json');
 try {
   console.log(`Loading data from ${dataFilename} ...`)
   const rawData = fs.readFileSync(dataFilename);
@@ -16,15 +16,15 @@ catch (e) {
   console.error(e);
 }
 
-COL_MEMBER = 'wyd.member';
-COL_ROLE = 'wyd.role';
-COL_GEAR = 'wyd.gear';
-COL_GEAR_TYPE = 'wyd.geartype';
-COL_RECORD = 'wyd.record';
-COL_RECORD_TRACK = 'wyd.recordtrack';
-COL_SONG = 'wyd.song';
-COL_CONCERT = 'wyd.concert';
-COL_CONCERT_SETLIST = 'wyd.concertsetlist';
+const COL_MEMBER = 'wyd.member';
+const COL_ROLE = 'wyd.role';
+const COL_GEAR = 'wyd.gear';
+const COL_GEAR_TYPE = 'wyd.geartype';
+const COL_RECORD = 'wyd.record';
+const COL_RECORD_TRACK = 'wyd.recordtrack';
+const COL_SONG = 'wyd.song';
+const COL_CONCERT = 'wyd.concert';
+const COL_CONCERT_SETLIST = 'wyd.concertsetlist';
 
 const _getFields = (item) => {
   return {

@@ -1128,6 +1128,27 @@
             "Among Vultures"
           ]
         }
+      },
+      {
+        "model": "wyd.concert",
+        "pk": 16,
+        "fields": {
+          "title": "CrabCore Fest III",
+          "venue": "Villa Tacchini",
+          "poster": "",
+          "date": "2021-09-24",
+          "members": [
+            1,
+            2,
+            4,
+            6
+          ],
+          "bands": [
+            "Stortregn",
+            "The Erkonauts",
+            "Kassogtha"
+          ]
+        }
       }
     ],
     "wyd.record": [
@@ -1138,6 +1159,9 @@
           "title": "Deprivation",
           "type": "EP",
           "artwork": "deprivation.jpg",
+          "links": [
+            "https://whosyourdaddytheband.bandcamp.com/album/deprivation"
+          ],
           "recorded": "2018-03",
           "released": "2018-09",
           "members": [
@@ -2437,6 +2461,102 @@
           "concert": 15,
           "song": 7,
           "rank": 11
+        }
+      },
+
+
+
+
+
+
+      {
+        "model": "wyd.concertsetlist",
+        "pk": 140,
+        "fields": {
+          "concert": 16,
+          "song": 13,
+          "rank": 0
+        }
+      },
+      {
+        "model": "wyd.concertsetlist",
+        "pk": 141,
+        "fields": {
+          "concert": 16,
+          "song": 1,
+          "rank": 1
+        }
+      },
+      {
+        "model": "wyd.concertsetlist",
+        "pk": 142,
+        "fields": {
+          "concert": 16,
+          "song": 14,
+          "rank": 2
+        }
+      },
+      {
+        "model": "wyd.concertsetlist",
+        "pk": 143,
+        "fields": {
+          "concert": 16,
+          "song": 9,
+          "rank": 3
+        }
+      },
+      {
+        "model": "wyd.concertsetlist",
+        "pk": 144,
+        "fields": {
+          "concert": 16,
+          "song": 6,
+          "rank": 4
+        }
+      },
+      {
+        "model": "wyd.concertsetlist",
+        "pk": 145,
+        "fields": {
+          "concert": 16,
+          "song": 16,
+          "rank": 5
+        }
+      },
+      {
+        "model": "wyd.concertsetlist",
+        "pk": 146,
+        "fields": {
+          "concert": 16,
+          "song": 12,
+          "rank": 6
+        }
+      },
+      {
+        "model": "wyd.concertsetlist",
+        "pk": 147,
+        "fields": {
+          "concert": 16,
+          "song": 5,
+          "rank": 7
+        }
+      },
+      {
+        "model": "wyd.concertsetlist",
+        "pk": 148,
+        "fields": {
+          "concert": 16,
+          "song": 11,
+          "rank": 8
+        }
+      },
+      {
+        "model": "wyd.concertsetlist",
+        "pk": 149,
+        "fields": {
+          "concert": 16,
+          "song": 10,
+          "rank": 9
         }
       }
     ]

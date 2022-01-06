@@ -2,10 +2,10 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:dev": "nodemon --watch src --ext js,graphql --exec babel-node  index.js",
+    "start:dev": "nodemon --watch src --ext js,graphql,json --exec babel-node src/index.js",
     "build": "babel src --out-dir build && shx cp .env build 2>/dev/null || : && shx cp src/schema/schema.graphql build/schema",
     "start": "npm run build && node build/index.js"
   },
@@ -14,10 +14,26 @@
   "license": "ISC",
   "dependencies": {
     "apollo-datasource-mongodb": "^0.2.7",
-    "apollo-server": "^2.16.1",
+    "apollo-server": "^2.25.3",
     "apollo-server-express": "^2.25.0",
     "express": "^4.17.1",
     "graphql": "^15.3.0",
     "mongodb": "^3.6.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/node": "^7.8.7",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "@babel/preset-react": "^7.9.4",
+    "@babel/preset-typescript": "^7.9.0",
+    "@babel/runtime-corejs3": "^7.9.2",
+    "babel-plugin-auto-import": "^1.0.5",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "cross-env": "^7.0.2",
+    "nodemon": "^1.19.1",
+    "shx": "^0.3.2"
   }
 }

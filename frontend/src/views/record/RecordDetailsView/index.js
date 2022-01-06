@@ -4,8 +4,11 @@ import { useMatch, Link as RouterLink } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import {
   Box,
+  Button,
   Container,
   Grid,
+  List,
+  ListItem,
   Paper,
   TableContainer,
   Table,
@@ -16,6 +19,7 @@ import {
   Typography,
   makeStyles
 } from '@material-ui/core';
+import BandcampIcon from 'src/icons/Bandcamp';
 
 import Page from 'src/components/Page';
 
@@ -143,6 +147,43 @@ const RecordDetails = () => {
                 </TableBody>
               </Table>
             </TableContainer>
+          </Grid>
+          <Grid item xs={3}>
+            <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
+              Listen on
+            </Typography>
+            <List>
+              {data.record.links.map((link) => {
+                let icon = null;
+                let title = null;
+
+                // TODO switch the right icon here
+                icon = <BandcampIcon color="primary" />
+                title = 'Bandcamp';
+
+
+                return (
+                  <ListItem
+                    disableGutters
+                    key={link}
+                  >
+                    <Button
+                      activeClassName={classes.active}
+                      className={classes.button}
+                      startIcon={icon}
+                      target="_blank"
+                      href={link}
+                    >
+                      <span>
+                        {title}
+                      </span>
+                    </Button>
+                  </ListItem>
+                );
+              })}
+
+            </List>
+
           </Grid>
         </Grid>
       </Container>
