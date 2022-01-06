@@ -83,6 +83,29 @@ const RecordDetails = () => {
     }
   });
 
+  const getStreamerInfo = (link) => {
+    const info = {
+      icon: null,
+      name: null,
+    };
+
+    const url = new URL(link);
+    const urlHostnameParts = url.hostname.split(/\./);
+    const domain = urlHostnameParts.length < 2 ? url.hostname : urlHostnameParts.slice(-2).join('.');
+
+    switch (domain) {
+      case 'bandcamp.com':
+        info.icon = <BandcampIcon color="primary" />;
+        info.name = 'Bandcamp';
+        break;
+
+      default:
+        break;
+    }
+
+    return info;
+  };
+
   if (match === null) {
     return <div>ERROR: match is null</div>;
   }
@@ -154,13 +177,7 @@ const RecordDetails = () => {
             </Typography>
             <List>
               {data.record.links.map((link) => {
-                let icon = null;
-                let title = null;
-
-                // TODO switch the right icon here
-                icon = <BandcampIcon color="primary" />
-                title = 'Bandcamp';
-
+                const { icon, name } = getStreamerInfo(link);
 
                 return (
                   <ListItem
@@ -175,7 +192,7 @@ const RecordDetails = () => {
                       href={link}
                     >
                       <span>
-                        {title}
+                        {name}
                       </span>
                     </Button>
                   </ListItem>
