@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Box,
   Container,
   Grid,
   makeStyles
@@ -7,12 +8,18 @@ import {
 
 import Page from 'src/components/Page';
 
+import banner from './wyd_banner.png';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.dark,
     minHeight: '100%',
     paddingBottom: theme.spacing(3),
-    paddingTop: theme.spacing(3)
+    textAlign: 'center',
+  },
+
+  banner: {
+    width: '100%',
   }
 }));
 
@@ -24,22 +31,21 @@ const Home = () => {
       className={classes.root}
       title="Who's Your Daddy?"
     >
-      <Container maxWidth={false}>
+      <Box sx={{ flexGrow: 1 }}>
         <Grid
           container
-          spacing={3}
         >
           <Grid
             item
-            lg={3}
-            sm={6}
-            xl={3}
+            lg={12}
+            sm={12}
+            xl={12}
             xs={12}
           >
-            HOME
+            <img src={banner} alt="Banner" className={classes.banner} />
           </Grid>
         </Grid>
-      </Container>
+      </Box>
     </Page>
   );
 };

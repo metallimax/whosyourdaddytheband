@@ -95,7 +95,7 @@ const NavBar = ({ onMobileClose, openMobile }) => {
         mb={2}
         mt={2}
       >
-        <RouterLink to="/app/booking">
+        <RouterLink to="/app/contact">
           <Button
             color="primary"
             variant="contained"
